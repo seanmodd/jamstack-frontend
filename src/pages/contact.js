@@ -238,7 +238,7 @@ const ContactPage = () => {
     <Layout>
       <Grid
         container
-        justify="space-around"
+        justifyContent="space-around"
         alignItems="center"
         classes={{ root: classes.mainContainer }}
         direction={matchesMD ? 'column' : 'row'}
@@ -249,7 +249,7 @@ const ContactPage = () => {
             container
             classes={{ root: classes.formContainer }}
             direction="column"
-            justify="space-between"
+            justifyContent="space-between"
             alignItems="center"
           >
             <Grid
@@ -337,7 +337,7 @@ const ContactPage = () => {
           <Grid
             container
             direction="column"
-            justify="space-between"
+            justifyContent="space-between"
             classes={{ root: classes.infoContainer }}
           >
             {info.map((section, i) => (

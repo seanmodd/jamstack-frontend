@@ -1,22 +1,22 @@
-import React from "react"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import Lottie from "react-lottie"
-import { makeStyles } from "@material-ui/core/styles"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Lottie from 'react-lottie'
+import { makeStyles } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import animationData from "../../images/data.json"
+import animationData from '../../images/data.json'
 
 const useStyles = makeStyles(theme => ({
   textContainer: {
-    padding: "2rem",
-    [theme.breakpoints.down("xs")]: {
-      padding: "1rem",
+    padding: '2rem',
+    [theme.breakpoints.down('xs')]: {
+      padding: '1rem',
     },
   },
   heading: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "3.5rem",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '3.5rem',
     },
   },
 }))
@@ -24,9 +24,9 @@ const useStyles = makeStyles(theme => ({
 export default function HeroBlock() {
   const classes = useStyles()
 
-  const matchesLG = useMediaQuery(theme => theme.breakpoints.down("lg"))
-  const matchesMD = useMediaQuery(theme => theme.breakpoints.down("md"))
-  const matchesXS = useMediaQuery(theme => theme.breakpoints.down("xs"))
+  const matchesLG = useMediaQuery(theme => theme.breakpoints.down('lg'))
+  const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
+  const matchesXS = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
   const defaultOptions = {
     loop: true,
@@ -35,7 +35,7 @@ export default function HeroBlock() {
   }
 
   return (
-    <Grid container justify="space-around" alignItems="center">
+    <Grid container justifyContent="space-around" alignItems="center">
       <Grid item classes={{ root: classes.textContainer }}>
         <Grid container direction="column">
           <Grid item>
@@ -62,12 +62,12 @@ export default function HeroBlock() {
           options={defaultOptions}
           width={
             matchesXS
-              ? "20rem"
+              ? '20rem'
               : matchesMD
-              ? "30rem"
+              ? '30rem'
               : matchesLG
-              ? "40rem"
-              : "50rem"
+              ? '40rem'
+              : '50rem'
           }
         />
       </Grid>

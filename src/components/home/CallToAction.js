@@ -1,60 +1,60 @@
-import React from "react"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-import { makeStyles } from "@material-ui/core/styles"
-import { Link } from "gatsby"
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { makeStyles } from '@material-ui/core/styles'
+import { Link } from 'gatsby'
 
-import cta from "../../images/cta.svg"
+import cta from '../../images/cta.svg'
 
 const useStyles = makeStyles(theme => ({
   account: {
-    color: "#fff",
-    marginLeft: "2rem",
+    color: '#fff',
+    marginLeft: '2rem',
   },
   body: {
-    maxWidth: "45rem",
-    [theme.breakpoints.down("md")]: {
-      padding: "0 1rem",
+    maxWidth: '45rem',
+    [theme.breakpoints.down('md')]: {
+      padding: '0 1rem',
     },
-    [theme.breakpoints.down("xs")]: {
-      padding: "0",
+    [theme.breakpoints.down('xs')]: {
+      padding: '0',
     },
   },
   container: {
-    marginBottom: "15rem",
+    marginBottom: '15rem',
   },
   buttonContainer: {
-    marginTop: "3rem",
+    marginTop: '3rem',
   },
   headingContainer: {
-    [theme.breakpoints.down("md")]: {
-      padding: "0 1rem",
+    [theme.breakpoints.down('md')]: {
+      padding: '0 1rem',
     },
-    [theme.breakpoints.down("xs")]: {
-      padding: "0",
+    [theme.breakpoints.down('xs')]: {
+      padding: '0',
     },
   },
   icon: {
-    [theme.breakpoints.down("xs")]: {
-      height: "18rem",
-      width: "20rem",
+    [theme.breakpoints.down('xs')]: {
+      height: '18rem',
+      width: '20rem',
     },
   },
 }))
 
 export default function CallToAction() {
   const classes = useStyles()
-  const matchesMD = useMediaQuery(theme => theme.breakpoints.down("md"))
+  const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
 
   return (
     <Grid
       container
-      justify="space-around"
+      justifyContent="space-around"
       alignItems="center"
       classes={{ root: classes.container }}
-      direction={matchesMD ? "column" : "row"}
+      direction={matchesMD ? 'column' : 'row'}
     >
       <Grid item>
         <img src={cta} className={classes.icon} alt="quality committed" />
@@ -62,13 +62,13 @@ export default function CallToAction() {
       <Grid item>
         <Grid container direction="column">
           <Grid item classes={{ root: classes.headingContainer }}>
-            <Typography align={matchesMD ? "center" : undefined} variant="h1">
+            <Typography align={matchesMD ? 'center' : undefined} variant="h1">
               Committed To Quality
             </Typography>
           </Grid>
           <Grid item classes={{ root: classes.body }}>
             <Typography
-              align={matchesMD ? "center" : undefined}
+              align={matchesMD ? 'center' : undefined}
               variant="body1"
             >
               At VAR X our mission is to provide comfortable, durable, premium,
@@ -79,7 +79,7 @@ export default function CallToAction() {
           <Grid
             item
             container
-            justify={matchesMD ? "center" : undefined}
+            justifyContent={matchesMD ? 'center' : undefined}
             classes={{ root: classes.buttonContainer }}
           >
             <Grid item>

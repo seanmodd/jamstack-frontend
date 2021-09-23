@@ -52,8 +52,8 @@ export default function Footer() {
 
   const routes = {
     'Contact Us': [
-      { label: '(555) 555-5555', href: 'tel:(555) 555-5555' },
-      { label: 'zachary@var-x.com', href: 'mailto:zachary@var-x.com' },
+      { label: '(555) 555-5555', href: 'tel:(650) 353-6570' },
+      { label: 'zachary@var-x.com', href: 'mailto:seansmodd@gmail.com' },
     ],
     'Customer Service': [
       { label: 'Contact Us', link: '/contact' },
@@ -67,7 +67,7 @@ export default function Footer() {
 
   return (
     <footer className={classes.footer}>
-      <Grid container justify="space-between">
+      <Grid container justifyContent="space-between">
         {/* Links */}
         <Grid item classes={{ root: classes.linkContainer }}>
           <Grid container>

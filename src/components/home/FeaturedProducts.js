@@ -1,91 +1,91 @@
-import React, { useState } from "react"
-import clsx from "clsx"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import IconButton from "@material-ui/core/IconButton"
-import Button from "@material-ui/core/Button"
-import Chip from "@material-ui/core/Chip"
-import { useStaticQuery, graphql } from "gatsby"
-import { makeStyles } from "@material-ui/core/styles"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
+import React, { useState } from 'react'
+import clsx from 'clsx'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+import Chip from '@material-ui/core/Chip'
+import { useStaticQuery, graphql } from 'gatsby'
+import { makeStyles } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import featuredAdornment from "../../images/featured-adornment.svg"
-import frame from "../../images/product-frame-grid.svg"
-import explore from "../../images/explore.svg"
+import featuredAdornment from '../../images/featured-adornment.svg'
+import frame from '../../images/product-frame-grid.svg'
+import explore from '../../images/explore.svg'
 
-import Rating from "./Rating"
+import Rating from './Rating'
 
 const useStyles = makeStyles(theme => ({
   background: {
     backgroundImage: `url(${featuredAdornment})`,
-    backgroundPosition: "top",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    width: "100%",
-    height: "180rem",
-    padding: "0 2.5rem",
-    [theme.breakpoints.down("md")]: {
-      height: "220rem",
+    backgroundPosition: 'top',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100%',
+    height: '180rem',
+    padding: '0 2.5rem',
+    [theme.breakpoints.down('md')]: {
+      height: '220rem',
     },
   },
   featured: {
-    height: "20rem",
-    width: "20rem",
-    [theme.breakpoints.down("md")]: {
-      height: "15rem",
-      width: "15rem",
+    height: '20rem',
+    width: '20rem',
+    [theme.breakpoints.down('md')]: {
+      height: '15rem',
+      width: '15rem',
     },
   },
   frame: {
     backgroundImage: `url(${frame})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
     borderRadius: 0,
-    height: "24.8rem",
-    width: "25rem",
-    boxSizing: "border-box",
+    height: '24.8rem',
+    width: '25rem',
+    boxSizing: 'border-box',
     boxShadow: theme.shadows[5],
-    position: "absolute",
+    position: 'absolute',
     zIndex: 1,
-    [theme.breakpoints.down("md")]: {
-      height: "19.8rem",
-      width: "20rem",
+    [theme.breakpoints.down('md')]: {
+      height: '19.8rem',
+      width: '20rem',
     },
   },
   slide: {
     backgroundColor: theme.palette.primary.main,
-    height: "20rem",
-    width: "24.5rem",
+    height: '20rem',
+    width: '24.5rem',
     zIndex: 0,
-    transition: "transform 0.5s ease",
-    padding: "1rem 2rem",
-    [theme.breakpoints.down("md")]: {
-      height: "15.2rem",
-      width: "19.5rem",
+    transition: 'transform 0.5s ease',
+    padding: '1rem 2rem',
+    [theme.breakpoints.down('md')]: {
+      height: '15.2rem',
+      width: '19.5rem',
     },
   },
   slideLeft: {
-    transform: "translate(-24.5rem, 0px)",
+    transform: 'translate(-24.5rem, 0px)',
   },
   slideRight: {
-    transform: "translate(24.5rem, 0px)",
+    transform: 'translate(24.5rem, 0px)',
   },
   slideDown: {
-    transform: "translate(0px, 17rem)",
+    transform: 'translate(0px, 17rem)',
   },
   productContainer: {
-    margin: "5rem 0",
+    margin: '5rem 0',
   },
   exploreContainer: {
-    marginTop: "auto",
+    marginTop: 'auto',
   },
   exploreButton: {
-    textTransform: "none",
+    textTransform: 'none',
   },
   exploreIcon: {
-    height: "1.5rem",
-    marginLeft: "1rem",
+    height: '1.5rem',
+    marginLeft: '1rem',
   },
   chipLabel: {
     ...theme.typography.h5,
@@ -99,7 +99,7 @@ export default function FeaturedProductions() {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(null)
 
-  const matchesMD = useMediaQuery(theme => theme.breakpoints.down("md"))
+  const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
 
   const data = useStaticQuery(graphql`
     query GetFeatured {
@@ -124,23 +124,23 @@ export default function FeaturedProductions() {
     <Grid
       container
       direction="column"
-      justify={matchesMD ? "space-between" : "center"}
+      justifyContent={matchesMD ? 'space-between' : 'center'}
       classes={{ root: classes.background }}
     >
       {data.allStrapiProduct.edges.map(({ node }, i) => {
         const alignment = matchesMD
-          ? "center"
+          ? 'center'
           : i === 0 || i === 3
-            ? "flex-start"
-            : i === 1 || i === 4
-              ? "center"
-              : "flex-end"
+          ? 'flex-start'
+          : i === 1 || i === 4
+          ? 'center'
+          : 'flex-end'
 
         return (
           <Grid
             item
             container
-            justify={alignment}
+            justifyContent={alignment}
             key={node.strapiId}
             classes={{ root: classes.productContainer }}
             alignItems="center"
@@ -165,17 +165,17 @@ export default function FeaturedProductions() {
               classes={{
                 root: clsx(classes.slide, {
                   [classes.slideLeft]:
-                    !matchesMD && expanded === i && alignment === "flex-end",
+                    !matchesMD && expanded === i && alignment === 'flex-end',
                   [classes.slideRight]:
                     !matchesMD &&
                     expanded === i &&
-                  (alignment === "flex-start" || alignment === "center"),
+                    (alignment === 'flex-start' || alignment === 'center'),
                   [classes.slideDown]: matchesMD && expanded === i,
                 }),
               }}
             >
               <Grid item>
-                <Typography variant="h4">{node.name.split(" ")[0]}</Typography>
+                <Typography variant="h4">{node.name.split(' ')[0]}</Typography>
               </Grid>
               <Grid item>
                 <Rating number={5} />
