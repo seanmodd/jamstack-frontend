@@ -5,15 +5,10 @@ import { StaticImage } from 'gatsby-plugin-image'
 import Layout from '../components/ui/layout'
 import Seo from '../components/ui/seo'
 
-const IndexPage = () => (
+const HatsPage = () => (
   <Layout>
-
-
-
-
-
-
+    <p>Hats Nice</p>
   </Layout>
 )
 
-export default IndexPage
+export default HatsPage
