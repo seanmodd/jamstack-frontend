@@ -35,7 +35,7 @@ export default function HeroBlock() {
   }
 
   return (
-    <Grid container justifyContent="space-around" alignItems="center">
+    <Grid container justify="space-around" alignItems="center">
       <Grid item classes={{ root: classes.textContainer }}>
         <Grid container direction="column">
           <Grid item>

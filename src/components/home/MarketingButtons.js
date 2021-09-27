@@ -73,7 +73,7 @@ export default function MarketingButtons() {
   return (
     <Grid
       container
-      justifyContent="space-around"
+      justify="space-around"
       classes={{ root: classes.container }}
     >
       {buttons.map(button => (
@@ -81,7 +81,7 @@ export default function MarketingButtons() {
           <Grid
             container
             alignItems="center"
-            justifyContent="center"
+            justify="center"
             direction="column"
             classes={{ root: classes.button }}
             component={button.link ? Link : 'a'}

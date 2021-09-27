@@ -7,7 +7,7 @@ import Seo from '../components/ui/seo'
 
 const HatsPage = () => (
   <Layout>
-    <p>Hats Nice</p>
+    <p>Hats</p>
   </Layout>
 )
 

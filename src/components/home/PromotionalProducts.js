@@ -6,8 +6,9 @@ import IconButton from '@material-ui/core/IconButton'
 import Carousel from 'react-spring-3d-carousel'
 import clsx from 'clsx'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import promoAdornment from '../../images/promo-adornment.svg'
 import explore from '../../images/explore.svg'
@@ -93,9 +94,16 @@ export default function PromotionalProducts() {
             name
             strapiId
             description
+            category {
+              name
+            }
             variants {
               images {
-                url
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
               }
             }
           }
@@ -106,8 +114,10 @@ export default function PromotionalProducts() {
 
   const slides = []
 
-  data.allStrapiProduct.edges.map(({ node }, i) =>
-    slides.push({
+  data.allStrapiProduct.edges.map(({ node }, i) => {
+    const image = getImage(node.variants[0].images[0].localFile)
+
+    return slides.push({
       key: i,
       content: (
         <Grid container direction="column" alignItems="center">
@@ -121,46 +131,46 @@ export default function PromotionalProducts() {
                 }),
               }}
             >
-              <img
-                // src={
-                //   process.env.GATSBY_STRAPI_URL + node.variants[0].images[0].url
-                // }
-                src="https://cdn.shopify.com/s/files/1/0035/1309/0115/products/Cashmere-Hoodie-Black-1_540x.jpg?v=1631175487"
+              <GatsbyImage
+                image={image}
                 alt={`image-${i}`}
                 className={classes.carouselImage}
+                objectFit="contain"
               />
             </IconButton>
           </Grid>
           <Grid item>
             {selectedSlide === i ? (
               <Typography variant="h1" classes={{ root: classes.productName }}>
-                {node.name.split(' ')[0]}
+                {node.category.name.toLowerCase()}
               </Typography>
             ) : null}
           </Grid>
         </Grid>
       ),
       description: node.description,
+      url: `/${node.category.name.toLowerCase()}`,
     })
-  )
-  console.log(process.env.GATSBY_STRAPI_URL)
+  })
 
   return (
     <Grid
       container
-      justifyContent={matchesMD ? 'space-around' : 'space-between'}
+      justify={matchesMD ? 'space-around' : 'space-between'}
       alignItems="center"
       classes={{ root: classes.mainContainer }}
       direction={matchesMD ? 'column' : 'row'}
     >
       <Grid item classes={{ root: classes.carouselContainer }}>
-        <Carousel slides={slides} goToSlide={selectedSlide} />
+        {typeof window !== 'undefined' ? (
+          <Carousel slides={slides} goToSlide={selectedSlide} />
+        ) : null}
       </Grid>
       <Grid item classes={{ root: classes.descriptionContainer }}>
         <Typography variant="h2" paragraph>
           {slides[selectedSlide].description}
         </Typography>
-        <Button>
+        <Button component={Link} to={slides[selectedSlide].url}>
           <Typography variant="h4" classes={{ root: classes.explore }}>
             Explore
           </Typography>
