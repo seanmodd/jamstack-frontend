@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  console.log(data.allStrapiCategory.edges)
+  console.log('LAYOUT UI COMPONENT GETTING CATEGORY name and strapiId GRAPHQL: ', data.allStrapiCategory.edges)
 
   return (
     <>
@@ -33,10 +33,16 @@ const Layout = ({ children }) => {
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          // padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <div
+          style={{
+            paddingTop: '100px',
+          }}
+        >
+          <main>{children}</main>
+        </div>
       </div>
       <Footer />
     </>

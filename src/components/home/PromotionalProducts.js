@@ -125,7 +125,7 @@ export default function PromotionalProducts() {
                 // src={
                 //   process.env.GATSBY_STRAPI_URL + node.variants[0].images[0].url
                 // }
-                src="https://i.imgur.com/cyp2OG9.jpeg"
+                src="https://cdn.shopify.com/s/files/1/0035/1309/0115/products/Cashmere-Hoodie-Black-1_540x.jpg?v=1631175487"
                 alt={`image-${i}`}
                 className={classes.carouselImage}
               />
@@ -143,6 +143,7 @@ export default function PromotionalProducts() {
       description: node.description,
     })
   )
+  console.log(process.env.GATSBY_STRAPI_URL)
 
   return (
     <Grid

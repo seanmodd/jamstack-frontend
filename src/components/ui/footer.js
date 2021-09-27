@@ -52,8 +52,8 @@ export default function Footer() {
 
   const routes = {
     'Contact Us': [
-      { label: '(555) 555-5555', href: 'tel:(650) 353-6570' },
-      { label: 'zachary@var-x.com', href: 'mailto:seansmodd@gmail.com' },
+      { label: '(650) 353-6570', href: 'tel:(650) 353-6570' },
+      { label: 'sean@senpex.com', href: 'mailto:sean@senpex.com' },
     ],
     'Customer Service': [
       { label: 'Contact Us', link: '/contact' },
@@ -114,7 +114,7 @@ export default function Footer() {
                 </IconButton>
               </Grid>
             ))}
-          </Grid>
+          </Grid>{' '}
         </Grid>
       </Grid>
     </footer>

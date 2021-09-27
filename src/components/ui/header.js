@@ -16,6 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import { Link, navigate } from 'gatsby'
 import menu from '../../images/menu.svg'
 import account from '../../images/account-header.svg'
+
 import cart from '../../images/cart.svg'
 import search from '../../images/search.svg'
 

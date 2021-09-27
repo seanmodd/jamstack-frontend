@@ -119,6 +119,7 @@ export default function FeaturedProductions() {
       }
     }
   `)
+  console.log('GetFeatured GraphQL Data: ', data)
 
   return (
     <Grid
@@ -152,9 +153,10 @@ export default function FeaturedProductions() {
               classes={{ root: classes.frame }}
             >
               <img
-                src={
-                  process.env.GATSBY_STRAPI_URL + node.variants[0].images[0].url
-                }
+                // src={
+                //   process.env.GATSBY_STRAPI_URL + node.variants[0].images[0].url
+                // }
+                src="https://cdn.shopify.com/s/files/1/0035/1309/0115/products/Cashmere-Hoodie-Black-1_540x.jpg?v=1631175487"
                 alt={node.name}
                 className={classes.featured}
               />
@@ -183,7 +185,8 @@ export default function FeaturedProductions() {
               <Grid item>
                 <Chip
                   classes={{ root: classes.chipRoot, label: classes.chipLabel }}
-                  label={`$${node.variants[0].price}`}
+                  // label={`$${node.variants[0].price}`}
+                  label="$99"
                 />
               </Grid>
               <Grid item classes={{ root: classes.exploreContainer }}>

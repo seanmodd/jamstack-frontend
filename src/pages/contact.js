@@ -242,6 +242,7 @@ const ContactPage = () => {
         alignItems="center"
         classes={{ root: classes.mainContainer }}
         direction={matchesMD ? 'column' : 'row'}
+        style={{ marginTop: '100px', marginBottom: '100px' }}
       >
         {/* Contact Form */}
         <Grid item classes={{ root: classes.formWrapper }}>
@@ -333,7 +334,7 @@ const ContactPage = () => {
         </Grid>
 
         {/* Contact Info */}
-        <Grid item>
+        {/* <Grid item>
           <Grid
             container
             direction="column"
@@ -362,7 +363,7 @@ const ContactPage = () => {
               </Grid>
             ))}
           </Grid>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Layout>
   )
