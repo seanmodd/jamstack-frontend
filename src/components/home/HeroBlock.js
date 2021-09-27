@@ -29,8 +29,8 @@ export default function HeroBlock() {
   const matchesXS = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
   const defaultOptions = {
-    loop: true,
-    autoplay: false,
+    loop: false,
+    autoplay: true,
     animationData,
   }
 
