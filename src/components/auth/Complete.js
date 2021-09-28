@@ -60,8 +60,13 @@ export default function Complete({ user, dispatchUser }) {
       <Grid item container justify="flex-end">
         <Grid item classes={{ root: classes.shopContainer }}>
           <Button>
-            <Typography variant="h3" classes={{ root: classes.text }}>
-              Shop
+            <Typography
+              component={Link}
+              to="/account"
+              variant="h3"
+              classes={{ root: classes.text }}
+            >
+              Let's start!
             </Typography>
             <img src={forward} alt="browse products" className={classes.shop} />
           </Button>

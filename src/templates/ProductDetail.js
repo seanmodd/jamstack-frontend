@@ -90,7 +90,9 @@ export default function ProductDetail({
       <Grid container direction="column">
         <Grid item container direction={matchesMD ? 'column' : 'row'}>
           <ProductImages
-            images={variants[selectedVariant].images}
+            // images={variants[selectedVariant].images}
+            //* TODO: Fix this
+            images={variants[selectedVariant]?.images}
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
           />
