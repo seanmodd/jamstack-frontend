@@ -1,72 +1,72 @@
-import React, { useState, useEffect, useContext } from 'react'
-import clsx from 'clsx'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Badge from '@material-ui/core/Badge'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useState, useEffect, useContext } from "react"
+import clsx from "clsx"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button"
+import ButtonGroup from "@material-ui/core/ButtonGroup"
+import Badge from "@material-ui/core/Badge"
+import { makeStyles } from "@material-ui/core/styles"
 
-import { CartContext } from '../../contexts'
-import { addToCart, removeFromCart } from '../../contexts/actions'
+import { CartContext } from "../../contexts"
+import { addToCart, removeFromCart } from "../../contexts/actions"
 
-import Cart from '../../images/Cart'
+import Cart from "../../images/Cart"
 
 const useStyles = makeStyles(theme => ({
   qtyText: {
-    color: ({ white }) => (white ? theme.palette.secondary.main : '#fff'),
+    color: ({ white }) => (white ? theme.palette.secondary.main : "#fff"),
   },
   mainGroup: {
-    height: '3rem',
+    height: "3rem",
   },
   editButtons: {
-    height: '1.525rem',
+    height: "1.525rem",
     borderRadius: 0,
     backgroundColor: ({ white }) =>
-      white ? '#fff' : theme.palette.secondary.main,
+      white ? "#fff" : theme.palette.secondary.main,
     borderLeft: ({ white }) =>
-      `2px solid ${white ? theme.palette.secondary.main : '#fff'}`,
-    borderRight: ({ round }) => (round ? 0 : '2px solid #fff'),
-    borderBottom: 'none',
-    borderTop: 'none',
-    borderRadius: ({ round }) => (round ? '0px 50px 50px 0px' : 0),
-    '&:hover': {
+      `2px solid ${white ? theme.palette.secondary.main : "#fff"}`,
+    borderRight: ({ round }) => (round ? 0 : "2px solid #fff"),
+    borderBottom: "none",
+    borderTop: "none",
+    borderRadius: ({ round }) => (round ? "0px 50px 50px 0px" : 0),
+    "&:hover": {
       backgroundColor: ({ white }) =>
-        white ? '#fff' : theme.palette.secondary.light,
+        white ? "#fff" : theme.palette.secondary.light,
     },
   },
   endButtons: {
     backgroundColor: ({ white }) =>
-      white ? '#fff' : theme.palette.secondary.main,
+      white ? "#fff" : theme.palette.secondary.main,
     borderRadius: 50,
-    border: 'none',
+    border: "none",
   },
   cartButton: {
-    marginLeft: '0 !important',
-    transition: 'background-color 1s ease',
+    marginLeft: "0 !important",
+    transition: "background-color 1s ease",
   },
   minus: {
-    marginTop: '-0.25rem',
+    marginTop: "-0.25rem",
   },
   minusButton: {
     borderTop: ({ white }) =>
-      `2px solid ${white ? theme.palette.secondary.main : '#fff'}`,
+      `2px solid ${white ? theme.palette.secondary.main : "#fff"}`,
   },
   qtyButton: {
-    '&:hover': {
+    "&:hover": {
       backgroundColor: ({ white }) =>
-        white ? '#fff' : theme.palette.secondary.main,
+        white ? "#fff" : theme.palette.secondary.main,
     },
   },
   badge: {
-    color: '#fff',
-    fontSize: '1.5rem',
+    color: "#fff",
+    fontSize: "1.5rem",
     backgroundColor: theme.palette.secondary.main,
     padding: 0,
   },
   success: {
     backgroundColor: theme.palette.success.main,
-    '&:hover': {
+    "&:hover": {
       backgroundColor: theme.palette.success.main,
     },
   },
@@ -103,22 +103,22 @@ export default function QtyButton({
   }
 
   const handleChange = direction => {
-    if (qty === stock[selectedVariant].qty && direction === 'up') {
+    if (qty === stock[selectedVariant].qty && direction === "up") {
       return null
     }
 
-    if (qty === 1 && direction === 'down') {
+    if (qty === 1 && direction === "down") {
       return null
     }
 
-    const newQty = direction === 'up' ? qty + 1 : qty - 1
+    const newQty = direction === "up" ? qty + 1 : qty - 1
 
     setQty(newQty)
 
     if (isCart) {
-      if (direction === 'up') {
+      if (direction === "up") {
         dispatchCart(addToCart(variants[selectedVariant], 1, name))
-      } else if (direction === 'down') {
+      } else if (direction === "down") {
         dispatchCart(removeFromCart(variants[selectedVariant], 1))
       }
     }
@@ -140,8 +140,7 @@ export default function QtyButton({
   useEffect(() => {
     if (stock === null || stock === -1) {
       return undefined
-    }
-    if (qty === 0 && stock[selectedVariant].qty !== 0) {
+    } else if (qty === 0 && stock[selectedVariant].qty !== 0) {
       setQty(1)
     } else if (qty > stock[selectedVariant].qty) {
       setQty(stock[selectedVariant].qty)
@@ -168,7 +167,7 @@ export default function QtyButton({
         </Button>
         <ButtonGroup orientation="vertical">
           <Button
-            onClick={() => handleChange('up')}
+            onClick={() => handleChange("up")}
             classes={{ root: classes.editButtons }}
           >
             <Typography variant="h3" classes={{ root: classes.qtyText }}>
@@ -176,7 +175,7 @@ export default function QtyButton({
             </Typography>
           </Button>
           <Button
-            onClick={() => handleChange('down')}
+            onClick={() => handleChange("down")}
             classes={{ root: clsx(classes.editButtons, classes.minusButton) }}
           >
             <Typography
@@ -190,7 +189,7 @@ export default function QtyButton({
         {hideCartButton ? null : (
           <Button
             onClick={handleCart}
-            disabled={stock?.selectedVariant?.qty === 0 : true}
+            disabled={stock ? stock[selectedVariant].qty === 0 : true}
             classes={{
               root: clsx(classes.endButtons, classes.cartButton, {
                 [classes.success]: success,

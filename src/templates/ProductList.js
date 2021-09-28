@@ -87,7 +87,7 @@ export default function ProductList({
 
   const productsPerPage = layout === 'grid' ? 16 : 6
 
-  const content = []
+  let content = []
   const selectedSort = sortOptions.filter(option => option.active)[0]
   const sortedProducts = selectedSort.function(products)
 
@@ -95,65 +95,65 @@ export default function ProductList({
     product.node.variants.map(variant => content.push({ product: i, variant }))
   )
 
-  const isFiltered = false
+  let isFiltered = false
   const filters = {}
-  // let filteredProducts = []
+  let filteredProducts = []
 
-  // Object.keys(filterOptions)
-  //   .filter(option => filterOptions[option] !== null)
-  //   .map(option => {
-  //     filterOptions[option].forEach(value => {
-  //       if (value.checked) {
-  //         isFiltered = true
+  Object.keys(filterOptions)
+    .filter(option => filterOptions[option] !== null)
+    .map(option => {
+      filterOptions[option].forEach(value => {
+        if (value.checked) {
+          isFiltered = true
 
-  //         if (filters[option] === undefined) {
-  //           filters[option] = []
-  //         }
+          if (filters[option] === undefined) {
+            filters[option] = []
+          }
 
-  //         if (!filters[option].includes(value)) {
-  //           filters[option].push(value)
-  //         }
+          if (!filters[option].includes(value)) {
+            filters[option].push(value)
+          }
 
-  //         content.forEach(item => {
-  //           if (option === 'Color') {
-  //             if (
-  //               // item.variant.colorLabel === value.label &&
-  //               !filteredProducts.includes(item)
-  //             ) {
-  //               filteredProducts.push(item)
-  //             }
-  //           } else if (
-  //             item.variant[option.toLowerCase()] === value.label &&
-  //             !filteredProducts.includes(item)
-  //           ) {
-  //             filteredProducts.push(item)
-  //           }
-  //         })
-  //       }
-  //     })
-  //   })
+          content.forEach(item => {
+            if (option === 'Color') {
+              if (
+                item.variant.colorLabel === value.label &&
+                !filteredProducts.includes(item)
+              ) {
+                filteredProducts.push(item)
+              }
+            } else if (
+              item.variant[option.toLowerCase()] === value.label &&
+              !filteredProducts.includes(item)
+            ) {
+              filteredProducts.push(item)
+            }
+          })
+        }
+      })
+    })
 
-  // Object.keys(filters).forEach(filter => {
-  //   filteredProducts = filteredProducts.filter(item => {
-  //     let valid
+  Object.keys(filters).forEach(filter => {
+    filteredProducts = filteredProducts.filter(item => {
+      let valid
 
-  //     filters[filter].some(value => {
-  //       if (filter === 'Color') {
-  //         if (item.variant.colorLabel === value.label) {
-  //           valid = item
-  //         }
-  //       } else if (item.variant[filter.toLowerCase()] === value.label) {
-  //         valid = item
-  //       }
-  //     })
+      filters[filter].some(value => {
+        if (filter === 'Color') {
+          if (item.variant.colorLabel === value.label) {
+            valid = item
+          }
+        } else if (item.variant[filter.toLowerCase()] === value.label) {
+          valid = item
+        }
+      })
 
-  //     return valid
-  //   })
-  // })
+      return valid
+    })
+  })
 
-  // if (isFiltered) {
-  //   content = filteredProducts
-  // }
+  if (isFiltered) {
+    content = filteredProducts
+  }
 
   const numPages = Math.ceil(content.length / productsPerPage)
 
@@ -195,7 +195,6 @@ export default function ProductList({
   )
 }
 
-//! BELOW DOES NOT INCLUDE colorLabel AFTER STYLE AND BEFORE IMAGES!
 export const query = graphql`
   query GetCategoryProducts($id: String!) {
     allStrapiProduct(filter: { category: { id: { eq: $id } } }) {
@@ -213,6 +212,7 @@ export const query = graphql`
             price
             size
             style
+            colorLabel
             images {
               localFile {
                 childImageSharp {
