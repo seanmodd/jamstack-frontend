@@ -1,10 +1,3 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -28,20 +21,6 @@ exports.createPages = async ({ graphql, actions }) => {
               strapiId
               name
               description
-              filterOptions {
-                Size {
-                  checked
-                  label
-                }
-                Style {
-                  checked
-                  label
-                }
-                Color {
-                  checked
-                  label
-                }
-              }
             }
           }
         }
@@ -78,7 +57,6 @@ exports.createPages = async ({ graphql, actions }) => {
         name: category.node.name,
         description: category.node.description,
         id: category.node.strapiId,
-        filterOptions: category.node.filterOptions,
       },
     })
   })
