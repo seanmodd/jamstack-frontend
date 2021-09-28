@@ -87,7 +87,7 @@ export default function ProductList({
 
   const productsPerPage = layout === 'grid' ? 16 : 6
 
-  let content = []
+  const content = []
   const selectedSort = sortOptions.filter(option => option.active)[0]
   const sortedProducts = selectedSort.function(products)
 
@@ -95,7 +95,7 @@ export default function ProductList({
     product.node.variants.map(variant => content.push({ product: i, variant }))
   )
 
-  let isFiltered = false
+  const isFiltered = false
   const filters = {}
   // let filteredProducts = []
 
