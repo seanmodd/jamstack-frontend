@@ -190,7 +190,7 @@ export default function QtyButton({
         {hideCartButton ? null : (
           <Button
             onClick={handleCart}
-            disabled={stock ? stock[selectedVariant].qty === 0 : true}
+            disabled={stock ? stock[selectedVariant]?.qty === 0 : true}
             classes={{
               root: clsx(classes.endButtons, classes.cartButton, {
                 [classes.success]: success,

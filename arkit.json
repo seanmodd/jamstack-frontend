@@ -1,0 +1,59 @@
+
+{
+  "components": [
+    {
+      "type": "Dependency",
+      "patterns": [
+        "node_modules/*"
+      ]
+    },
+    {
+      "type": "Component",
+      "patterns": [
+        "**/*.ts",
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.tsx"
+      ]
+    },
+    {
+      "type": "React",
+      "format": "full",
+      "patterns": [
+        "**/*.js"
+      ]
+    }
+  ],
+  "excludePatterns": [
+    "test",
+    "tests",
+    "dist",
+    "coverage",
+    "node_modules/*",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/*.min.*"
+  ],
+  "output": [
+    {
+      "path": [
+        "arkit.svg"
+      ],
+      "groups": [
+        {
+          "first": true,
+          "components": [
+            "Component",
+            "Vue"
+          ]
+        },
+        {
+          "type": "Dependencies",
+          "components": [
+            "Dependency"
+          ]
+        }
+      ]
+    }
+  ]
+}

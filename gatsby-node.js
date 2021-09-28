@@ -16,8 +16,23 @@ exports.createPages = async ({ graphql, actions }) => {
             node {
               name
               strapiId
+              description
               category {
                 name
+              }
+              variants {
+                id
+                color
+                size
+                style
+                price
+                images {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
               }
             }
           }
@@ -66,6 +81,9 @@ exports.createPages = async ({ graphql, actions }) => {
         name: product.node.name,
         id: product.node.strapiId,
         category: product.node.category.name,
+        description: product.node.description,
+        variants: product.node.variants,
+        product,
       },
     })
   })
@@ -82,4 +100,14 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+}
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [{ test: /react-spring-3d-carousel/, use: loaders.null() }],
+      },
+    })
+  }
 }
