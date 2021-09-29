@@ -38,8 +38,8 @@ export default function ProductImages({
   setSelectedImage,
 }) {
   const classes = useStyles()
-
-  const image = getImage(images[selectedImage].localFile)
+  //! FIX BELOW!
+  const image = 'null' || getImage(images[selectedImage]?.localFile)
 
   return (
     <Grid item container direction="column" alignItems="center" lg={6}>
@@ -51,21 +51,23 @@ export default function ProductImages({
         />
       </Grid>
       <Grid item container justify="center">
-        {images.map((imageData, i) => {
-          const image = getImage(imageData.localFile)
+        //! FIX BELOW! There was no images && before..
+        {images &&
+          images.map((imageData, i) => {
+            const image = getImage(imageData.localFile)
 
-          return (
-            <Grid item classes={{ root: classes.imageItem }} key={i}>
-              <IconButton onClick={() => setSelectedImage(i)}>
-                <GatsbyImage
-                  image={image}
-                  alt={`product_small${i}`}
-                  className={classes.small}
-                />
-              </IconButton>
-            </Grid>
-          )
-        })}
+            return (
+              <Grid item classes={{ root: classes.imageItem }} key={i}>
+                <IconButton onClick={() => setSelectedImage(i)}>
+                  <GatsbyImage
+                    image={image}
+                    alt={`product_small${i}`}
+                    className={classes.small}
+                  />
+                </IconButton>
+              </Grid>
+            )
+          })}
       </Grid>
     </Grid>
   )

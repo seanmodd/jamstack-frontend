@@ -72,7 +72,8 @@ export default function RecentlyViewed({ products }) {
 
             return (
               <ProductFrameGrid
-                key={product.node.variants[product.selectedVariant].id}
+                //! FIX BELOW!
+                key={product.node.variants[product.selectedVariant]?.id}
                 product={product}
                 variant={product.node.variants[product.selectedVariant]}
                 disableQuickView

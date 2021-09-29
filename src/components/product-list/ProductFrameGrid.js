@@ -104,10 +104,11 @@ export default function ProductFrameGrid({
 
   const imageIndex = colorIndex(product, variant, selectedColor)
 
+  //! FIX BELOW!
   const imgURL =
     imageIndex !== -1
       ? product.node.variants[imageIndex].images[0].localFile
-      : variant.images[0].localFile
+      : variant?.images[0].localFile
 
   const image = getImage(imgURL)
 
@@ -128,9 +129,10 @@ export default function ProductFrameGrid({
         onClick={() =>
           matchesMD || disableQuickView
             ? navigate(
+                //! FIX BELOW!
                 `/${product.node.category.name.toLowerCase()}/${product.node.name
                   .split(' ')[0]
-                  .toLowerCase()}${hasStyles ? `?style=${variant.style}` : ''}`
+                  .toLowerCase()}${hasStyles ? `?style=${variant?.style}` : ''}`
               )
             : setOpen(true)
         }
@@ -151,7 +153,7 @@ export default function ProductFrameGrid({
         setOpen={setOpen}
         image={image}
         name={productName}
-        price={variant.price}
+        // price={variant.price}
         product={product}
         variant={variant}
         sizes={sizes}

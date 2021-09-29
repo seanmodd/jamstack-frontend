@@ -119,9 +119,9 @@ export default function QuickView({
           <Grid
             item
             component={Link}
-            to={`/${product.node.category.name.toLowerCase()}/${product.node.name
-              .split(' ')[0]
-              .toLowerCase()}${hasStyles ? `?style=${variant.style}` : ''}`}
+            // to={`/${product.node.category.name.toLowerCase()}/${product.node.name
+            //   .split(' ')[0]
+            //   .toLowerCase()}${hasStyles ? `?style=${variant.style}` : ''}`}
           >
             <GatsbyImage
               image={image}
@@ -142,9 +142,12 @@ export default function QuickView({
                 justify="space-between"
                 classes={{ root: classes.infoContainer }}
                 component={Link}
+                //! FIX BELOW!
                 to={`/${product.node.category.name.toLowerCase()}/${product.node.name
                   .split(' ')[0]
-                  .toLowerCase()}${hasStyles ? `?style=${variant.style}` : ''}`}
+                  .toLowerCase()}${
+                  hasStyles ? `?style=${variant?.style}` : ''
+                }`}
               >
                 <Grid item>
                   <Typography variant="h4">{name}</Typography>

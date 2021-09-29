@@ -138,7 +138,8 @@ export default function ProductInfo({
   const { user, dispatchUser } = useContext(UserContext)
   const { dispatchFeedback } = useContext(FeedbackContext)
   const [selectedSize, setSelectedSize] = useState(
-    variants[selectedVariant].size
+    //! FIX BELOW!
+    variants[selectedVariant]?.size
   )
   const [selectedColor, setSelectedColor] = useState(null)
 
@@ -158,7 +159,8 @@ export default function ProductInfo({
     if (
       !colors.includes(variant.color) &&
       variant.size === selectedSize &&
-      variant.style === variants[selectedVariant].style
+      //! FIX BELOW!
+      variant.style === variants[selectedVariant]?.style
     ) {
       colors.push(variant.color)
     }
@@ -217,7 +219,12 @@ export default function ProductInfo({
         classes={{ root: classes.background }}
       >
         <Grid item classes={{ root: classes.iconWrapper }}>
-          <Favorite size={4} variant={variants[selectedVariant].id} noPadding />
+          <Favorite
+            size={4}
+            //! FIX BELOW!
+            variant={variants[selectedVariant]?.id}
+            noPadding
+          />
         </Grid>
         <Grid item classes={{ root: classes.iconWrapper }}>
           <Subscription
@@ -269,7 +276,8 @@ export default function ProductInfo({
           </Grid>
           <Grid item classes={{ root: classes.chipContainer }}>
             <Chip
-              label={`$${variants[selectedVariant].price}`}
+              //! FIX BELOW!
+              label={`$${variants[selectedVariant]?.price}`}
               classes={{ root: classes.chipRoot, label: classes.chipLabel }}
             />
           </Grid>

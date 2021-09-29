@@ -1,44 +1,44 @@
-import React from "react"
-import clsx from "clsx"
-import Grid from "@material-ui/core/Grid"
-import Chip from "@material-ui/core/Chip"
-import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-import Hidden from "@material-ui/core/Hidden"
-import { makeStyles } from "@material-ui/core/styles"
+import React from 'react'
+import clsx from 'clsx'
+import Grid from '@material-ui/core/Grid'
+import Chip from '@material-ui/core/Chip'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Hidden from '@material-ui/core/Hidden'
+import { makeStyles } from '@material-ui/core/styles'
 
-import OrderDetailItem from "./OrderDetailItem"
+import OrderDetailItem from './OrderDetailItem'
 
 const useStyles = makeStyles(theme => ({
   drawer: {
-    height: "100%",
-    width: "30rem",
-    backgroundColor: "transparent",
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
+    height: '100%',
+    width: '30rem',
+    backgroundColor: 'transparent',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
     },
   },
   id: {
-    fontSize: "2.5rem",
+    fontSize: '2.5rem',
     fontWeight: 600,
-    marginTop: "1rem",
-    marginLeft: "1rem",
+    marginTop: '1rem',
+    marginLeft: '1rem',
   },
   bold: {
     fontWeight: 600,
   },
   date: {
     fontWeight: 600,
-    marginLeft: "1rem",
-    marginBottom: "1rem",
+    marginLeft: '1rem',
+    marginBottom: '1rem',
   },
   padding: {
-    padding: "1rem",
+    padding: '1rem',
   },
   status: {
-    marginLeft: "1rem",
+    marginLeft: '1rem',
   },
   dark: {
     backgroundColor: theme.palette.secondary.main,
@@ -47,38 +47,43 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main,
   },
   prices: {
-    padding: "0.5rem 1rem",
+    padding: '0.5rem 1rem',
   },
   text: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "1.25rem",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.25rem',
     },
   },
   spacer: {
-    minHeight: "10rem",
+    minHeight: '10rem',
   },
 }))
 
 export default function OrderDetails({ orders, open, setOpen }) {
   const classes = useStyles()
-  const matchesXS = useMediaQuery(theme => theme.breakpoints.down("xs"))
+  const matchesXS = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
-  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
+  // const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
+  const iOS =
+    typeof window !== 'undefined' &&
+    window &&
+    window.window === window &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent)
 
   const order = orders.find(order => order.id === open)
 
   const prices = [
-    { label: "Subtotal", value: order?.subtotal },
-    { label: "Shipping", value: order?.shippingOption.price },
-    { label: "Tax", value: order?.tax },
-    { label: "Total", value: order?.total },
+    { label: 'Subtotal', value: order?.subtotal },
+    { label: 'Shipping', value: order?.shippingOption.price },
+    { label: 'Tax', value: order?.tax },
+    { label: 'Total', value: order?.total },
     {
-      label: "Payment",
+      label: 'Payment',
       string: `${order?.paymentMethod.brand.toUpperCase()} ${
         order?.paymentMethod.last4
       }`,
     },
-    { label: "Transaction", string: order?.transaction },
+    { label: 'Transaction', string: order?.transaction },
   ]
 
   return (
@@ -86,7 +91,7 @@ export default function OrderDetails({ orders, open, setOpen }) {
       open={!!open}
       onOpen={() => null}
       onClose={() => setOpen(null)}
-      anchor={matchesXS ? "bottom" : "right"}
+      anchor={matchesXS ? 'bottom' : 'right'}
       classes={{ paper: classes.drawer }}
       disableBackdropTransition={!iOS}
       disableDiscovery={iOS}
@@ -118,9 +123,9 @@ export default function OrderDetails({ orders, open, setOpen }) {
           </Grid>
           <Grid item>
             <Typography variant="body2" classes={{ root: classes.date }}>
-              {`${order?.createdAt.split("-")[1]}/${
-                order?.createdAt.split("-")[2].split("T")[0]
-              }/${order?.createdAt.split("-")[0]}`}
+              {`${order?.createdAt.split('-')[1]}/${
+                order?.createdAt.split('-')[2].split('T')[0]
+              }/${order?.createdAt.split('-')[0]}`}
             </Typography>
           </Grid>
         </Grid>
@@ -138,7 +143,7 @@ export default function OrderDetails({ orders, open, setOpen }) {
             <br />
             {order?.billingAddress.street}
             <br />
-            {order?.billingAddress.city}, {order?.billingAddress.state}{" "}
+            {order?.billingAddress.city}, {order?.billingAddress.state}{' '}
             {order?.billingAddress.zip}
           </Typography>
         </Grid>
@@ -156,7 +161,7 @@ export default function OrderDetails({ orders, open, setOpen }) {
             <br />
             {order?.shippingAddress.street}
             <br />
-            {order?.shippingAddress.city}, {order?.shippingAddress.state}{" "}
+            {order?.shippingAddress.city}, {order?.shippingAddress.state}{' '}
             {order?.shippingAddress.zip}
           </Typography>
         </Grid>

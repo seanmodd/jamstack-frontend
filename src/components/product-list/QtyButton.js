@@ -103,7 +103,8 @@ export default function QtyButton({
   }
 
   const handleChange = direction => {
-    if (qty === stock[selectedVariant].qty && direction === 'up') {
+    //! FIX BELOW!
+    if (qty === stock[selectedVariant]?.qty && direction === 'up') {
       return null
     }
 
@@ -132,7 +133,8 @@ export default function QtyButton({
         variants[selectedVariant],
         qty,
         name,
-        stock[selectedVariant].qty
+        //! FIX BELOW!
+        stock[selectedVariant]?.qty
       )
     )
   }
@@ -141,10 +143,13 @@ export default function QtyButton({
     if (stock === null || stock === -1) {
       return undefined
     }
-    if (qty === 0 && stock[selectedVariant].qty !== 0) {
+    //! FIX BELOW!
+    if (qty === 0 && stock[selectedVariant]?.qty !== 0) {
       setQty(1)
-    } else if (qty > stock[selectedVariant].qty) {
-      setQty(stock[selectedVariant].qty)
+      //! FIX BELOW!
+    } else if (qty > stock[selectedVariant]?.qty) {
+      //! FIX BELOW!
+      setQty(stock[selectedVariant]?.qty)
     }
   }, [stock, selectedVariant])
 
@@ -190,6 +195,7 @@ export default function QtyButton({
         {hideCartButton ? null : (
           <Button
             onClick={handleCart}
+            //! FIX BELOW!
             disabled={stock ? stock[selectedVariant]?.qty === 0 : true}
             classes={{
               root: clsx(classes.endButtons, classes.cartButton, {

@@ -1,3 +1,4 @@
+const path = require('path')
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -111,3 +112,8 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     })
   }
 }
+
+exports.modifyBabelrc = ({ babelrc }) => ({
+  ...babelrc,
+  plugins: babelrc.plugins.concat(['transform-regenerator']),
+})

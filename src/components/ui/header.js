@@ -85,7 +85,11 @@ export default function Header({ categories }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   // const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
-  const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+  const iOS =
+    typeof window !== 'undefined' &&
+    window &&
+    window.window === window &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent)
 
   const activeIndex = () => {
     const pathname =
