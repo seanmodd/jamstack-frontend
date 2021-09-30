@@ -117,3 +117,20 @@ exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
   plugins: babelrc.plugins.concat(['transform-regenerator']),
 })
+
+// exports.onCreateNode = ({ node, actions, reporter }) => {
+//   const { createNodeField } = actions
+
+//   reporter.info(`>>>>${node.internal.type}`)
+//   if (node.internal.type === 'StrapiProduct') {
+//     const slug = `/${node.category.name.toLowerCase()}/${
+//       node.name.split(' ')[0]
+//     }`
+
+//     createNodeField({
+//       node,
+//       name: 'slug',
+//       value: slug,
+//     })
+//   }
+// }
